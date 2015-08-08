@@ -30,8 +30,12 @@
 	$server->on("Receive", function (){
 		echo 'Receive ',PHP_EOL;
 		$argu = func_get_args();
-		print_r($argu);
+// 		print_r($argu);
 		_log();
+		$server = $argu[0];
+		foreach ($server->connections as $fd){
+			$server->send($fd,'hello');
+		}
 	});
 	
 	$server->on("Close", function (){
@@ -52,10 +56,10 @@
 			' 当前Worker进程的编号: ',$server->worker_id
 		;
 		echo PHP_EOL,'连接 信息:',PHP_EOL;
-		foreach ($server->connections as $fd){
-			$info = $server->connection_info($fd);
-			print_r($info);
-		}
+		// foreach ($server->connections as $fd){
+		// 	$info = $server->connection_info($fd);
+		// 	print_r($info);
+		// }
 	}
 	
 	function  notify_connection_message($msg = ""){
