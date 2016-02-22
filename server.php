@@ -45,6 +45,23 @@
 		_log();
 	});
 	
+	$server->on("ManagerStart",function (){
+		$argv = func_get_args();
+		print_r($argv);
+		echo 'Manager worker Start',PHP_EOL,__LINE__;
+	});
+	
+	
+	$server->on("ManagerStop",function (){
+		$argv = func_get_args();
+		print_r($argv);
+		echo "Manager worker stop",PHP_EOL,__LINE__;
+	});
+	
+	
+	
+	
+	
 	function _log(){
 		global $server;
 		
